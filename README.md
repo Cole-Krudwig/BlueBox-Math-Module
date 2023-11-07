@@ -5,5 +5,6 @@ BlueBox Fall 2023
 
 Ashley Homecgoy,
 Max Keller,
-Cole Krudwig
+Cole Krudwig,
+Aliya Haas
 
