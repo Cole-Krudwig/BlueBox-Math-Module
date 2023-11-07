@@ -1,10 +1,57 @@
-<html lang="en">
+<!DOCTYPE html>
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <title>Multiplication Game</title>
+  <style>
+    body {
+      text-align: center;
+      font-family: Arial, sans-serif;
+    }
+    #problem {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+  </style>
 </head>
 <body>
-    <p>Test</p>
+  <h1>Multiplication Game</h1>
+  <div id="problem"></div>
+  <input type="text" id="answer" placeholder="Your Answer">
+  <button id="submit">Submit Answer</button>
+  <p id="result"></p>
+
+  <script>
+    // Generates a multiplication problem
+    function generateProblem() {
+      const num1 = Math.floor(Math.random() * 10);
+      const num2 = Math.floor(Math.random() * 10);
+      return { num1, num2, answer: num1 * num2 };
+    }
+
+    // Initializes problem
+    let currentProblem = generateProblem();
+    const problemElement = document.getElementById("problem");
+    const answerElement = document.getElementById("answer");
+    const resultElement = document.getElementById("result");
+
+    // Checks the answer
+    function checkAnswer() {
+      const userAnswer = parseInt(answerElement.value);
+      if (userAnswer === currentProblem.answer) {
+        resultElement.textContent = "Correct! Well done!";
+        currentProblem = generateProblem(); // Generate a new problem
+        problemElement.textContent = `${currentProblem.num1} x ${currentProblem.num2} = `;
+        answerElement.value = ""; // Clear the answer input
+      } else {
+        resultElement.textContent = "Incorrect. Try again.";
+      }
+    }
+
+    // Event listener for the submit button
+    document.getElementById("submit").addEventListener("click", checkAnswer);
+
+    // Initial problem display
+    problemElement.textContent = `${currentProblem.num1} x ${currentProblem.num2} = `;
+  </script>
 </body>
 </html>
